@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Profile Clone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f3f2ef;
+            color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .navbar {
+            background-color: white;
+            padding: 0 24px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        
+        .navbar-content {
+            max-width: 1128px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 34px;
+            height: 34px;
+            background-color: #0a66c2;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .navbar-search {
+            display: flex;
+            align-items: center;
+            background-color: #eef3f8;
+            padding: 0 8px;
+            border-radius: 4px;
+            height: 34px;
+            width: 280px;
+            margin-left: 8px;
+        }
+        
+        .search-icon {
+            color: rgba(0, 0, 0, 0.6);
+            margin-right: 8px;
+        }
+        
+        .search-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .navbar-menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 12px;
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 12px;
+        }
+        
+        .navbar-menu-item:hover {
+            color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .navbar-menu-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        .active {
+            color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .main-content {
+            max-width: 1128px;
+            margin: 72px auto 0;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 225px 1fr 300px;
+            gap: 24px;
+        }
+        
+        .profile-section {
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid #dce1e6;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        
+        .profile-background {
+            height: 100px;
+            background-color: #0a66c2;
+            position: relative;
+        }
+        
+        .profile-background-edit {
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            background-color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .profile-info {
+            padding: 24px;
+            position: relative;
+        }
+        
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #dce1e6;
+            border: 4px solid white;
+            position: absolute;
+            top: -60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            overflow: hidden;
+        }
+        
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-actions {
+            position: absolute;
+            right: 24px;
+            top: 24px;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .profile-action-btn {
+            background-color: white;
+            border: 1px solid #0a66c2;
+            color: #0a66c2;
+            border-radius: 16px;
+            padding: 6px 16px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .profile-main-btn {
+            background-color: #0a66c2;
+            color: white;
+        }
+        
+        .profile-name {
+            margin-top: 48px;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .profile-headline {
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.9);
+            margin-bottom: 8px;
+        }
+        
+        .profile-location {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 8px;
+        }
+        
+        .profile-connections {
+            font-size: 14px;
+            color: #0a66c2;
+            margin-bottom: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .profile-cta {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .profile-section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            padding: 0 24px;
+        }
+        
+        .experience-item {
+            padding: 16px 24px;
+            border-bottom: 1px solid #dce1e6;
+            display: flex;
+            gap: 16px;
+        }
+        
+        .experience-logo {
+            width: 48px;
+            height: 48px;
+            background-color: #f3f2ef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .experience-company {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .experience-role {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        
+        .experience-duration {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .activity-section {
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid #dce1e6;
+            padding: 16px 24px;
+            margin-bottom: 16px;
+        }
+        
+        .activity-tab {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #dce1e6;
+            padding-bottom: 8px;
+        }
+        
+        .activity-tab-item {
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+            padding: 8px 0;
+        }
+        
+        .activity-tab-item.active {
+            color: rgba(0, 0, 0, 0.9);
+            font-weight: 600;
+            border-bottom: 2px solid #0a66c2;
+        }
+        
+        .post-item {
+            margin-bottom: 16px;
+        }
+        
+        .post-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .post-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #dce1e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .post-author {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .post-meta {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .post-content {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .post-actions {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .post-action {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .post-action:hover {
+            color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .sidebar {
+            position: sticky;
+            top: 72px;
+        }
+        
+        .sidebar-section {
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid #dce1e6;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .people-item {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #dce1e6;
+        }
+        
+        .people-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #dce1e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .people-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .people-headline {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .connect-btn {
+            border: 1px solid #0a66c2;
+            color: #0a66c2;
+            background-color: white;
+            border-radius: 16px;
+            padding: 4px 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+        
+        .footer {
+            max-width: 1128px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .footer a {
+            color: rgba(0, 0, 0, 0.6);
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        
+        .footer a:hover {
+            color: #0a66c2;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .navbar-search {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <div style="display: flex; align-items: center;">
+                <div class="logo">in</div>
+                <div class="navbar-search">
+                    <div class="search-icon">🔍</div>
+                    <input type="text" placeholder="Search" class="search-input">
+                </div>
+            </div>
+            <ul class="navbar-menu">
+                <li class="navbar-menu-item active">
+                    <div class="navbar-menu-icon">🏠</div>
+                    <span>Home</span>
+                </li>
+                <li class="navbar-menu-item">
+                    <div class="navbar-menu-icon">👥</div>
+                    <span>My Network</span>
+                </li>
+                <li class="navbar-menu-item">
+                    <div class="navbar-menu-icon">💼</div>
+                    <span>Jobs</span>
+                </li>
+                <li class="navbar-menu-item">
+                    <div class="navbar-menu-icon">💬</div>
+                    <span>Messaging</span>
+                </li>
+                <li class="navbar-menu-item">
+                    <div class="navbar-menu-icon">🔔</div>
+                    <span>Notifications</span>
+                </li>
+                <li class="navbar-menu-item">
+                    <div class="navbar-menu-icon" style="width: 24px; height: 24px; background-color: #dce1e6; border-radius: 50%;"></div>
+                    <span>Me</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="profile-section">
+                <div class="profile-background">
+                    <div class="profile-background-edit">📷</div>
+                </div>
+                <div class="profile-info">
+                    <div class="profile-photo">
+                        <img src="images//kiki2.jpg" alt="Profile Photo">
+                    </div>
+                    <div class="profile-actions">
+                        <button class="profile-action-btn">Add section</button>
+                        <button class="profile-action-btn">More</button>
+                    </div>
+                    <h1 class="profile-name">Keertika A</h1>
+                    <p class="profile-headline">Student at CIT</p>
+                    <div class="profile-location">
+                        <span>coimbatore</span> • 
+                        <span style="color: #0a66c2; cursor: pointer;">Contact info</span>
+                    </div>
+                    <div class="profile-connections">500+ connections</div>
+                    <div class="profile-cta">
+                        <button class="profile-action-btn profile-main-btn">Open to</button>
+                        <button class="profile-action-btn">Add profile section</button>
+                        <button class="profile-action-btn">More</button>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-section">
+                <h2 class="profile-section-title">About</h2>
+                <div style="padding: 0 24px 24px;">
+                    <p style="font-size: 14px;">STudent with pasion to learn new tech stacks</p>
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <h2 class="profile-section-title">Education</h2>
+                <div class="experience-item">
+                    <div class="experience-logo">CIT</div>
+                    <div>
+                        <div class="experience-company">Coimbatore Institute of Technology</div>
+                        <div class="experience-role">M.Sc Software Systems</div>
+                        <div class="experience-duration">2022 - 2027</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Feed -->
+        <div>
+            <div class="activity-section">
+                <h2 class="profile-section-title">Activity</h2>
+                <div class="activity-tab">
+                    <div class="activity-tab-item active">Posts</div>
+                    <div class="activity-tab-item">Comments</div>
+                    <div class="activity-tab-item">Reposts</div>
+                </div>
+                <div class="post-item">
+                    <div class="post-header">
+                        <div class="post-avatar">AJ</div>
+                        <div>
+                            <div class="post-author">Keertika</div>
+                            <div class="post-meta">Shared this post • 3d</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Just finished implementing a new feature using React Hooks. Really enjoying the cleaner code and better performance! #reactjs #webdevelopment</p>
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">👍 Like</div>
+                        <div class="post-action">💬 Comment</div>
+                        <div class="post-action">🔄 Repost</div>
+                        <div class="post-action">📤 Send</div>
+                    </div>
+                </div>
+                <div class="post-item">
+                    <div class="post-header">
+                        <div class="post-avatar">AJ</div>
+                        <div>
+                            <div class="post-author">Alex Johnson</div>
+                            <div class="post-meta">Shared this post • 1w</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Excited to announce that our team has just completed a major platform migration! It was a challenging but rewarding experience. #techlife #engineering</p>
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">👍 Like</div>
+                        <div class="post-action">💬 Comment</div>
+                        <div class="post-action">🔄 Repost</div>
+                        <div class="post-action">📤 Send</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">People you may know</div>
+                <div class="people-item">
+                    <div class="people-avatar">SB</div>
+                    <div>
+                        <div class="people-name">Sarah Brown</div>
+                        <div class="people-headline">UX Designer at Design Studio</div>
+                        <button class="connect-btn">Connect</button>
+                    </div>
+                </div>
+                <div class="people-item">
+                    <div class="people-avatar">MR</div>
+                    <div>
+                        <div class="people-name">Michael Roberts</div>
+                        <div class="people-headline">Frontend Developer at Web Solutions</div>
+                        <button class="connect-btn">Connect</button>
+                    </div>
+                </div>
+                <div class="people-item" style="border-bottom: none;">
+                    <div class="people-avatar">JT</div>
+                    <div>
+                        <div class="people-name">Jennifer Taylor</div>
+                        <div class="people-headline">Product Manager at Tech Innovations</div>
+                        <button class="connect-btn">Connect</button>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">People also viewed</div>
+                <div class="people-item">
+                    <div class="people-avatar">DP</div>
+                    <div>
+                        <div class="people-name">David Park</div>
+                        <div class="people-headline">Software Engineer at Tech Startup</div>
+                        <button class="connect-btn">Connect</button>
+                    </div>
+                </div>
+                <div class="people-item" style="border-bottom: none;">
+                    <div class="people-avatar">LM</div>
+                    <div>
+                        <div class="people-name">Linda Miller</div>
+                        <div class="people-headline">Senior Developer at CodeCorp</div>
+                        <button class="connect-btn">Connect</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        <div>
+            <a href="#">About</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Help Center</a>
+            <a href="#">Privacy & Terms</a>
+            <a href="#">Ad Choices</a>
+            <a href="#">Advertising</a>
+            <a href="#">Business Services</a>
+        </div>
+        <div style="margin-top: 8px;">
+            LinkedIn Clone © 2025
+        </div>
+    </div>
+
+    <script>
+        // Toggle active class for navbar menu items
+        const menuItems = document.querySelectorAll('.navbar-menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                menuItems.forEach(menuItem => menuItem.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+        
+        // Toggle active class for activity tab items
+        const tabItems = document.querySelectorAll('.activity-tab-item');
+        tabItems.forEach(item => {
+            item.addEventListener('click', () => {
+                tabItems.forEach(tabItem => tabItem.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+        
+        // Add click event for connect buttons
+        const connectButtons = document.querySelectorAll('.connect-btn');
+        connectButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                this.textContent = 'Pending';
+                this.style.backgroundColor = '#f3f2ef';
+                this.style.color = 'rgba(0, 0, 0, 0.6)';
+            });
+        });
+        
+        // Add like functionality to posts
+        const likeActions = document.querySelectorAll('.post-action');
+        likeActions.forEach(action => {
+            if (action.textContent.includes('Like')) {
+                action.addEventListener('click', function() {
+                    if (this.textContent === '👍 Like') {
+                        this.textContent = '👍 Liked';
+                        this.style.color = '#0a66c2';
+                    } else {
+                        this.textContent = '👍 Like';
+                        this.style.color = 'rgba(0, 0, 0, 0.6)';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

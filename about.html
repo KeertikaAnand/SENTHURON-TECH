@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arvind Shankar Photography</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .login-btn {
+            background-color: #fff;
+            color: #a557e5;
+            border: 1px solid #a557e5;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH48TLlfSv-_ftLgFguuS0Tq_MSWhOENkd4A&s') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .hero-btn {
+            background-color: #a557e5;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        /* Profile Section */
+        .profile {
+            background-color: #ffffff;
+            padding: 50px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #a557e5;
+        }
+        
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-info {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+        }
+        
+        .profile-info h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .profile-info p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #a557e5;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            padding: 50px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            font-size: 32px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #a557e5;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+            background-color: #ffffff;
+            text-align: center;
+        }
+        
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-item {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px 20px;
+            max-width: 250px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            background-color: #a557e5;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .feature-item h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .feature-item p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background-color: #a557e5;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .stats-item {
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+        }
+        
+        .stats-number {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .stats-label {
+            font-size: 16px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .testimonial-grid {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .testimonial-item {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            max-width: 500px;
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .testimonial-content::before {
+            content: '\201C';
+            font-size: 60px;
+            color: #a557e5;
+            position: absolute;
+            left: 0;
+            top: -20px;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .author-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h3 {
+            color: #a557e5;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #a557e5;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: #fff;
+            background-color: #444;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: #a557e5;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #bbb;
+            font-size: 14px;
+        }
+        
+        .cta-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #a557e5;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 99;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Photime</div>
+                <div class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="linkedin.html">LinkedIn</a></li>
+                </div>
+                <button class="login-btn">Login</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Capture Timeless Moments with<br>Our Lenses at Photime</h1>
+        <p>Experience photography like never before with our professional team of photographers.</p>
+        <button class="hero-btn">Book Now</button>
+    </section>
+
+    <section class="profile">
+        <div class="container">
+            <div class="profile-pic">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH48TLlfSv-_ftLgFguuS0Tq_MSWhOENkd4A&s" alt="Arvind Shankar">
+            </div>
+            <div class="profile-info">
+                <h2>Our Mission & Vision</h2>
+                <p>We are dedicated to capturing life's most precious moments with artistic flair and technical excellence. With years of experience in portrait, wedding, and event photography, we strive to deliver stunning images that tell your unique story.</p>
+                <p>Our vision is to create a visual legacy for our clients that can be cherished for generations to come.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">7+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Awards</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Meet Arvind Shankar</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTETbUlr0jNr2Nvb2Js3aIjx8WBnt53DvBrTA&s" alt="Photography 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSofn_qdhdlFpCLzClFPjAG-sQ_nZ63FA4QOA&s" alt="Photography 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.squarespace-cdn.com/content/v1/590beb9b893fc0ef1a3523e3/1658676352637-1K6JK547ZU2L928STUKM/Maria-21-Edit.jpg" alt="Photography 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://t3.ftcdn.net/jpg/01/97/11/64/360_F_197116416_hpfTtXSoJMvMqU99n6hGP4xX0ejYa4M7.jpg" alt="Photography 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://media.istockphoto.com/id/1299077582/photo/positivity-puts-you-in-a-position-of-power.jpg?s=612x612&w=0&k=20&c=baDuyrwRTscUZzyAqV44hnCq7d6tXUqwf26lJTcAE0A=" alt="Photography 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlXY_198WVb4cgLcgTvGcr2Id9l7c1xBVsuQ&s" alt="Photography 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.squarespace-cdn.com/content/v1/590beb9b893fc0ef1a3523e3/1658676592432-NRVI5VLXVLV7PRS1VRQM/WG" alt="Photography 7">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvi7HpQ-_PMSMOFrj1hwjp6LDcI-jm3Ro0Xw&s" alt="Photography 8">
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">What Sets Us Apart</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Premium Equipment</h3>
+                    <p>We use only the highest quality cameras and lenses to ensure exceptional image quality</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Professional Editing</h3>
+                    <p>Each photo is carefully edited to enhance colors and details while maintaining a natural look</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Quick Delivery</h3>
+                    <p>Receive your professionally edited photos within 7-10 business days</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Client Satisfaction</h3>
+                    <p>We work closely with you to ensure your vision comes to life in every shot</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Our Success So Far</h2>
+            <div class="stats-grid">
+                <div class="stats-item">
+                    <div class="stats-number">1,000+</div>
+                    <div class="stats-label">Photo Sessions</div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-number">200+</div>
+                    <div class="stats-label">Weddings</div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-number">30+</div>
+                    <div class="stats-label">Magazine Features</div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-number">40+</div>
+                    <div class="stats-label">Corporate Events</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">Arvind captured our wedding day perfectly. The photos are stunning and he made everyone feel so comfortable. We couldn't be happier with the results!</p>
+                        <div class="testimonial-author">
+                            <div class="author-pic">
+                                <img src="/api/placeholder/50/50" alt="Client">
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Wedding Photography</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">Working with this photography team was an absolute pleasure. They're professional, creative, and delivered amazing photos for our corporate event.</p>
+                        <div class="testimonial-author">
+                            <div class="author-pic">
+                                <img src="/api/placeholder/50/50" alt="Client">
+                            </div>
+                            <div class="author-info">
+                                <h4>Mark Thompson</h4>
+                                <p>Corporate Event</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Photime</h3>
+                    <p style="color: #bbb; margin-bottom: 20px;">Capturing moments, creating memories.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Wedding Photography</a></li>
+                        <li><a href="#">Portrait Sessions</a></li>
+                        <li><a href="#">Corporate Events</a></li>
+                        <li><a href="#">Family Photography</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">123 Photography Lane</a></li>
+                        <li><a href="#">New York, NY 10001</a></li>
+                        <li><a href="#">info@photime.com</a></li>
+                        <li><a href="#">(555) 123-4567</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Working Hours</h3>
+                    <ul>
+                        <li><a href="#">Monday-Friday: 9am-6pm</a></li>
+                        <li><a href="#">Saturday: 10am-4pm</a></li>
+                        <li><a href="#">Sunday: Closed</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Photime. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <div class="cta-button">
+        <i class="fas fa-envelope"></i>
+    </div>
+
+    <script>
+        // Simple scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollElements = document.querySelectorAll('.feature-item, .gallery-item, .testimonial-item');
+            
+            const elementInView = (el) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return elementTop <= window.innerHeight * 0.8;
+            };
+            
+            const displayScrollElement = (element) => {
+                element.style.opacity = "1";
+                element.style.transform = "translateY(0)";
+            };
+            
+            const hideScrollElement = (element) => {
+                element.style.opacity = "0";
+                element.style.transform = "translateY(20px)";
+            };
+            
+            scrollElements.forEach((el) => {
+                hideScrollElement(el);
+                el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+            });
+            
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el)) {
+                        displayScrollElement(el);
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', handleScrollAnimation);
+            handleScrollAnimation();
+        });
+    </script>
+</body>
+</html>

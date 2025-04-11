@@ -1,0 +1,77 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #333;
+  }
+  
+  .hero {
+    background: url('images/hero.jpg') center/cover no-repeat;
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    background: #fef4f9;
+    padding: 20px 0;
+    font-weight: bold;
+  }
+  
+  .our-works, .services, .offers, .testimonials, .gallery {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .works-gallery, .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .works-gallery img, .gallery-grid img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .services ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .services li {
+    margin: 10px 0;
+    background: #fce4ec;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .offers-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .offers-row div {
+    background: #ffe0f0;
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+  
+  .testimonials blockquote {
+    font-size: 1.2em;
+    font-style: italic;
+  }
+  
+  footer {
+    background: #111;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
