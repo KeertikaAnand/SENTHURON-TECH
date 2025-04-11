@@ -3,69 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arvind Shankar Photography</title>
+    <title>Photime Photography</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary-color: #ff1f6d;
+            --dark-color: #222;
+            --light-color: #fff;
+            --gray-color: #f5f5f5;
+            --dark-gray: #777;
         }
         
         body {
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         /* Header Styles */
         header {
-            background-color: white;
-            padding: 15px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
         }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        header.scrolled {
+            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.98);
         }
-        
+
         .logo {
             font-size: 24px;
-            font-weight: bold;
+            font-weight: 700;
+            color: #e0185d;
         }
-        
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
+
+        .nav-link {
+            position: relative;
             font-weight: 500;
+            color: #333;
+            padding: 5px 0;
+            margin: 0 15px;
         }
-        
-        .login-btn {
-            background-color: #fff;
-            color: #a557e5;
-            border: 1px solid #a557e5;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
+
+        .nav-link:hover {
+            color: #e0185d;
         }
-        
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #e0185d;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
         /* Hero Section */
         .hero {
             height: 70vh;
@@ -77,47 +83,17 @@
             color: white;
             text-align: center;
             padding: 0 20px;
-        }
-        
-        .hero h1 {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            max-width: 600px;
-        }
-        
-        .hero-btn {
-            background-color: #a557e5;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 16px;
+            margin-top: 76px;
         }
         
         /* Profile Section */
-        .profile {
-            background-color: #ffffff;
-            padding: 50px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-        
         .profile-pic {
             width: 150px;
             height: 150px;
             border-radius: 50%;
             overflow: hidden;
-            border: 5px solid #a557e5;
+            border: 5px solid #e0185d;
+            margin: 0 auto;
         }
         
         .profile-pic img {
@@ -126,38 +102,10 @@
             object-fit: cover;
         }
         
-        .profile-info {
-            flex: 1;
-            min-width: 300px;
-            max-width: 600px;
-        }
-        
-        .profile-info h2 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .profile-info p {
-            color: #666;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .stats {
-            display: flex;
-            gap: 30px;
-            margin-top: 20px;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
         .stat-number {
             font-size: 24px;
             font-weight: bold;
-            color: #a557e5;
+            color: #e0185d;
         }
         
         .stat-label {
@@ -166,11 +114,6 @@
         }
         
         /* Gallery Section */
-        .gallery-section {
-            padding: 50px 0;
-            background-color: #f9f9f9;
-        }
-        
         .section-title {
             text-align: center;
             margin-bottom: 40px;
@@ -187,14 +130,7 @@
             transform: translateX(-50%);
             width: 60px;
             height: 3px;
-            background-color: #a557e5;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
+            background-color:#e0185d;
         }
         
         .gallery-item {
@@ -203,6 +139,7 @@
             border-radius: 8px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            margin-bottom: 15px;
         }
         
         .gallery-item:hover {
@@ -216,27 +153,13 @@
         }
         
         /* Features Section */
-        .features {
-            padding: 60px 0;
-            background-color: #ffffff;
-            text-align: center;
-        }
-        
-        .features-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
         .feature-item {
             background-color: #f9f9f9;
             border-radius: 10px;
             padding: 30px 20px;
-            max-width: 250px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s;
+            height: 100%;
         }
         
         .feature-item:hover {
@@ -244,7 +167,7 @@
         }
         
         .feature-icon {
-            background-color: #a557e5;
+            background-color: #e0185d;
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -256,36 +179,12 @@
             font-size: 24px;
         }
         
-        .feature-item h3 {
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .feature-item p {
-            color: #666;
-            font-size: 14px;
-        }
-        
         /* Stats Section */
         .stats-section {
-            background-color: #a557e5;
+            background-color: #e0185d;
             color: white;
             padding: 60px 0;
             text-align: center;
-        }
-        
-        .stats-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-        }
-        
-        .stats-item {
-            flex: 1;
-            min-width: 200px;
-            max-width: 250px;
         }
         
         .stats-number {
@@ -294,33 +193,14 @@
             margin-bottom: 10px;
         }
         
-        .stats-label {
-            font-size: 16px;
-        }
-        
         /* Testimonials */
-        .testimonials {
-            padding: 60px 0;
-            background-color: #f9f9f9;
-        }
-        
-        .testimonial-grid {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 40px;
-        }
-        
         .testimonial-item {
             background-color: #fff;
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            max-width: 500px;
-            flex: 1;
-            min-width: 300px;
             position: relative;
+            height: 100%;
         }
         
         .testimonial-content {
@@ -331,7 +211,7 @@
         .testimonial-content::before {
             content: '\201C';
             font-size: 60px;
-            color: #a557e5;
+            color: #e0185d;
             position: absolute;
             left: 0;
             top: -20px;
@@ -342,11 +222,6 @@
             color: #555;
             margin-bottom: 20px;
             line-height: 1.6;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
         }
         
         .author-pic {
@@ -363,16 +238,6 @@
             object-fit: cover;
         }
         
-        .author-info h4 {
-            margin-bottom: 5px;
-            color: #333;
-        }
-        
-        .author-info p {
-            color: #666;
-            font-size: 12px;
-        }
-        
         /* Footer */
         footer {
             background-color: #222;
@@ -380,27 +245,15 @@
             padding: 60px 0 30px;
         }
         
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column {
-            flex: 1;
-            min-width: 200px;
-        }
-        
         .footer-column h3 {
-            color: #a557e5;
+            color: #e0185d;
             margin-bottom: 20px;
             font-size: 18px;
         }
         
         .footer-column ul {
             list-style: none;
+            padding-left: 0;
         }
         
         .footer-column ul li {
@@ -414,7 +267,7 @@
         }
         
         .footer-column ul li a:hover {
-            color: #a557e5;
+            color: #e0185d;
         }
         
         .social-links {
@@ -435,7 +288,7 @@
         }
         
         .social-links a:hover {
-            background-color: #a557e5;
+            background-color: #e0185d;
         }
         
         .copyright {
@@ -450,7 +303,7 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background-color: #a557e5;
+            background-color: #e0185d;
             color: white;
             width: 60px;
             height: 60px;
@@ -463,122 +316,185 @@
             cursor: pointer;
             z-index: 99;
         }
+
+        /* Bootstrap Button Customization */
+        .btn-primary {
+            background-color: #e0185d;
+            border-color: #e0185d;
+            border-radius: 30px;
+            padding: 10px 25px;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover, 
+        .btn-primary:focus {
+            background-color: #c6124f;
+            border-color: #c6124f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(224, 24, 93, 0.4);
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <nav>
-                <div class="logo">Photime</div>
-                <div class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="service.html">Services</a></li>
-                    <li><a href="linkedin.html">LinkedIn</a></li>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand logo" href="#">Photime</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto me-4">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="portfolio.html">Portfolio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="service.html">Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="linkedin.html">LinkedIn</a>
+                            </li>
+                        </ul>
+                        <button class="btn btn-primary">Book Session</button>
+                    </div>
                 </div>
-                <button class="login-btn">Login</button>
             </nav>
         </div>
     </header>
 
     <section class="hero">
-        <h1>Capture Timeless Moments with<br>Our Lenses at Photime</h1>
-        <p>Experience photography like never before with our professional team of photographers.</p>
-        <button class="hero-btn">Book Now</button>
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-4">Capture Timeless Moments with<br>Our Lenses at Photime</h1>
+            <p class="lead mb-5">Experience photography like never before with our professional team of photographers.</p>
+            <button class="btn btn-primary btn-lg">Book Now</button>
+        </div>
     </section>
 
-    <section class="profile">
+    <section class="profile py-5 bg-white">
         <div class="container">
-            <div class="profile-pic">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH48TLlfSv-_ftLgFguuS0Tq_MSWhOENkd4A&s" alt="Arvind Shankar">
-            </div>
-            <div class="profile-info">
-                <h2>Our Mission & Vision</h2>
-                <p>We are dedicated to capturing life's most precious moments with artistic flair and technical excellence. With years of experience in portrait, wedding, and event photography, we strive to deliver stunning images that tell your unique story.</p>
-                <p>Our vision is to create a visual legacy for our clients that can be cherished for generations to come.</p>
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-number">7+</div>
-                        <div class="stat-label">Years Experience</div>
+            <div class="row align-items-center">
+                <div class="col-md-4 mb-4 mb-md-0 text-center">
+                    <div class="profile-pic mb-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH48TLlfSv-_ftLgFguuS0Tq_MSWhOENkd4A&s" alt="Profile">
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Happy Clients</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Awards</div>
+                </div>
+                <div class="col-md-8">
+                    <h2 class="mb-3">Our Mission & Vision</h2>
+                    <p>We are dedicated to capturing life's most precious moments with artistic flair and technical excellence. With years of experience in portrait, wedding, and event photography, we strive to deliver stunning images that tell your unique story.</p>
+                    <p class="mb-4">Our vision is to create a visual legacy for our clients that can be cherished for generations to come.</p>
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <div class="stat-number">7+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Happy Clients</div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Awards</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="gallery-section">
+    <section class="gallery-section py-5 bg-light">
         <div class="container">
-            <h2 class="section-title">Meet Arvind Shankar</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTETbUlr0jNr2Nvb2Js3aIjx8WBnt53DvBrTA&s" alt="Photography 1">
+            <h2 class="section-title">Meet the team</h2>
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTETbUlr0jNr2Nvb2Js3aIjx8WBnt53DvBrTA&s" alt="Photography 1">
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSofn_qdhdlFpCLzClFPjAG-sQ_nZ63FA4QOA&s" alt="Photography 2">
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSofn_qdhdlFpCLzClFPjAG-sQ_nZ63FA4QOA&s" alt="Photography 2">
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.squarespace-cdn.com/content/v1/590beb9b893fc0ef1a3523e3/1658676352637-1K6JK547ZU2L928STUKM/Maria-21-Edit.jpg" alt="Photography 3">
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="https://images.squarespace-cdn.com/content/v1/590beb9b893fc0ef1a3523e3/1658676352637-1K6JK547ZU2L928STUKM/Maria-21-Edit.jpg" alt="Photography 3">
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://t3.ftcdn.net/jpg/01/97/11/64/360_F_197116416_hpfTtXSoJMvMqU99n6hGP4xX0ejYa4M7.jpg" alt="Photography 4">
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="https://t3.ftcdn.net/jpg/01/97/11/64/360_F_197116416_hpfTtXSoJMvMqU99n6hGP4xX0ejYa4M7.jpg" alt="Photography 4">
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://media.istockphoto.com/id/1299077582/photo/positivity-puts-you-in-a-position-of-power.jpg?s=612x612&w=0&k=20&c=baDuyrwRTscUZzyAqV44hnCq7d6tXUqwf26lJTcAE0A=" alt="Photography 5">
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="https://media.istockphoto.com/id/1299077582/photo/positivity-puts-you-in-a-position-of-power.jpg?s=612x612&w=0&k=20&c=baDuyrwRTscUZzyAqV44hnCq7d6tXUqwf26lJTcAE0A=" alt="Photography 5">
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlXY_198WVb4cgLcgTvGcr2Id9l7c1xBVsuQ&s" alt="Photography 6">
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlXY_198WVb4cgLcgTvGcr2Id9l7c1xBVsuQ&s" alt="Photography 6">
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.squarespace-cdn.com/content/v1/590beb9b893fc0ef1a3523e3/1658676592432-NRVI5VLXVLV7PRS1VRQM/WG" alt="Photography 7">
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="https://images.squarespace-cdn.com/content/v1/590beb9b893fc0ef1a3523e3/1658676592432-NRVI5VLXVLV7PRS1VRQM/WG" alt="Photography 7">
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvi7HpQ-_PMSMOFrj1hwjp6LDcI-jm3Ro0Xw&s" alt="Photography 8">
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvi7HpQ-_PMSMOFrj1hwjp6LDcI-jm3Ro0Xw&s" alt="Photography 8">
+                    </div>
                 </div>
-                
             </div>
         </div>
     </section>
 
-    <section class="features">
+    <section class="features py-5 bg-white">
         <div class="container">
             <h2 class="section-title">What Sets Us Apart</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-camera"></i>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3 class="text-center mt-3 mb-3">Premium Equipment</h3>
+                        <p class="text-center">We use only the highest quality cameras and lenses to ensure exceptional image quality</p>
                     </div>
-                    <h3>Premium Equipment</h3>
-                    <p>We use only the highest quality cameras and lenses to ensure exceptional image quality</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-edit"></i>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h3 class="text-center mt-3 mb-3">Professional Editing</h3>
+                        <p class="text-center">Each photo is carefully edited to enhance colors and details while maintaining a natural look</p>
                     </div>
-                    <h3>Professional Editing</h3>
-                    <p>Each photo is carefully edited to enhance colors and details while maintaining a natural look</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-clock"></i>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="text-center mt-3 mb-3">Quick Delivery</h3>
+                        <p class="text-center">Receive your professionally edited photos within 7-10 business days</p>
                     </div>
-                    <h3>Quick Delivery</h3>
-                    <p>Receive your professionally edited photos within 7-10 business days</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="text-center mt-3 mb-3">Client Satisfaction</h3>
+                        <p class="text-center">We work closely with you to ensure your vision comes to life in every shot</p>
                     </div>
-                    <h3>Client Satisfaction</h3>
-                    <p>We work closely with you to ensure your vision comes to life in every shot</p>
                 </div>
             </div>
         </div>
@@ -587,20 +503,20 @@
     <section class="stats-section">
         <div class="container">
             <h2 class="section-title" style="color: white;">Our Success So Far</h2>
-            <div class="stats-grid">
-                <div class="stats-item">
+            <div class="row">
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
                     <div class="stats-number">1,000+</div>
                     <div class="stats-label">Photo Sessions</div>
                 </div>
-                <div class="stats-item">
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
                     <div class="stats-number">200+</div>
                     <div class="stats-label">Weddings</div>
                 </div>
-                <div class="stats-item">
+                <div class="col-md-3 col-6">
                     <div class="stats-number">30+</div>
                     <div class="stats-label">Magazine Features</div>
                 </div>
-                <div class="stats-item">
+                <div class="col-md-3 col-6">
                     <div class="stats-number">40+</div>
                     <div class="stats-label">Corporate Events</div>
                 </div>
@@ -608,34 +524,38 @@
         </div>
     </section>
 
-    <section class="testimonials">
+    <section class="testimonials py-5 bg-light">
         <div class="container">
             <h2 class="section-title">What Our Clients Say</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial-item">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">Arvind captured our wedding day perfectly. The photos are stunning and he made everyone feel so comfortable. We couldn't be happier with the results!</p>
-                        <div class="testimonial-author">
-                            <div class="author-pic">
-                                <img src="/api/placeholder/50/50" alt="Client">
-                            </div>
-                            <div class="author-info">
-                                <h4>Sarah Johnson</h4>
-                                <p>Wedding Photography</p>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">Photime captured our wedding day perfectly. The photos are stunning and they made everyone feel so comfortable. We couldn't be happier with the results!</p>
+                            <div class="d-flex align-items-center">
+                                <div class="author-pic">
+                                    <img src="/api/placeholder/50/50" alt="Client">
+                                </div>
+                                <div class="author-info">
+                                    <h4 class="mb-1">Sarah Johnson</h4>
+                                    <p class="mb-0">Wedding Photography</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-item">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">Working with this photography team was an absolute pleasure. They're professional, creative, and delivered amazing photos for our corporate event.</p>
-                        <div class="testimonial-author">
-                            <div class="author-pic">
-                                <img src="/api/placeholder/50/50" alt="Client">
-                            </div>
-                            <div class="author-info">
-                                <h4>Mark Thompson</h4>
-                                <p>Corporate Event</p>
+                <div class="col-lg-6 mb-4">
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">Working with this photography team was an absolute pleasure. They're professional, creative, and delivered amazing photos for our corporate event.</p>
+                            <div class="d-flex align-items-center">
+                                <div class="author-pic">
+                                    <img src="/api/placeholder/50/50" alt="Client">
+                                </div>
+                                <div class="author-info">
+                                    <h4 class="mb-1">Mark Thompson</h4>
+                                    <p class="mb-0">Corporate Event</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -646,42 +566,50 @@
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Photime</h3>
-                    <p style="color: #bbb; margin-bottom: 20px;">Capturing moments, creating memories.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
+            <div class="row mb-5">
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <div class="footer-column">
+                        <h3>Photime</h3>
+                        <p style="color: #bbb; margin-bottom: 20px;">Capturing moments, creating memories.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-pinterest"></i></a>
+                        </div>
                     </div>
                 </div>
-                <div class="footer-column">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="#">Wedding Photography</a></li>
-                        <li><a href="#">Portrait Sessions</a></li>
-                        <li><a href="#">Corporate Events</a></li>
-                        <li><a href="#">Family Photography</a></li>
-                    </ul>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <div class="footer-column">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Wedding Photography</a></li>
+                            <li><a href="#">Portrait Sessions</a></li>
+                            <li><a href="#">Corporate Events</a></li>
+                            <li><a href="#">Family Photography</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="footer-column">
-                    <h3>Contact</h3>
-                    <ul>
-                        <li><a href="#">123 Photography Lane</a></li>
-                        <li><a href="#">New York, NY 10001</a></li>
-                        <li><a href="#">info@photime.com</a></li>
-                        <li><a href="#">(555) 123-4567</a></li>
-                    </ul>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <div class="footer-column">
+                        <h3>Contact</h3>
+                        <ul>
+                            <li><a href="#">123 Photography Lane</a></li>
+                            <li><a href="#">New York, NY 10001</a></li>
+                            <li><a href="#">info@photime.com</a></li>
+                            <li><a href="#">(555) 123-4567</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="footer-column">
-                    <h3>Working Hours</h3>
-                    <ul>
-                        <li><a href="#">Monday-Friday: 9am-6pm</a></li>
-                        <li><a href="#">Saturday: 10am-4pm</a></li>
-                        <li><a href="#">Sunday: Closed</a></li>
-                    </ul>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-column">
+                        <h3>Working Hours</h3>
+                        <ul>
+                            <li><a href="#">Monday-Friday: 9am-6pm</a></li>
+                            <li><a href="#">Saturday: 10am-4pm</a></li>
+                            <li><a href="#">Sunday: Closed</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="copyright">
@@ -694,8 +622,21 @@
         <i class="fas fa-envelope"></i>
     </div>
 
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
     <script>
-        // Simple scroll animation
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Animation on scroll
         document.addEventListener('DOMContentLoaded', function() {
             const scrollElements = document.querySelectorAll('.feature-item, .gallery-item, .testimonial-item');
             
