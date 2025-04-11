@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photography Portfolio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -16,113 +19,71 @@
             --dark-gray: #777;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: var(--dark-color);
+            border: 8px solid var(--primary-color);
+            min-height: 100vh;
         }
         
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
         }
         
-        img {
-            max-width: 100%;
-            display: block;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        ul {
-            list-style: none;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        .btn {
-            display: inline-block;
+        .btn-custom {
             background: var(--primary-color);
             color: var(--light-color);
             padding: 12px 30px;
             border-radius: 30px;
             font-weight: 500;
-            font-size: 16px;
             transition: all 0.3s;
             border: none;
-            cursor: pointer;
         }
         
-        .btn:hover {
+        .btn-custom:hover {
             background: #e0185d;
+            color: var(--light-color);
         }
         
-        .btn-outline {
+        .btn-outline-custom {
             background: transparent;
             border: 2px solid var(--primary-color);
             color: var(--primary-color);
         }
         
-        .btn-outline:hover {
+        .btn-outline-custom:hover {
             background: var(--primary-color);
             color: var(--light-color);
         }
         
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
+        /* Custom Navbar */
+        .navbar {
             padding: 20px 0;
             background: var(--light-color);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
+        .navbar-brand {
             font-size: 24px;
             font-weight: 700;
             color: var(--primary-color);
         }
         
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-links a {
+        .nav-link {
             font-weight: 500;
+            margin: 0 15px;
             transition: color 0.3s;
         }
         
-        .nav-links a:hover {
+        .nav-link:hover {
             color: var(--primary-color);
         }
         
         /* Hero Section */
         .hero {
             height: 100vh;
-            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkeQRa1O3jCV2tseF0svd7BJDAJWngJ3bYMw&s');
+            background-image: url('images/hero.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -163,12 +124,6 @@
         .stats {
             padding: 50px 0;
             background: var(--light-color);
-        }
-        
-        .stats-container {
-            display: flex;
-            justify-content: space-between;
-            text-align: center;
         }
         
         .stat-item h2 {
@@ -212,6 +167,7 @@
             justify-content: center;
             gap: 20px;
             margin-bottom: 40px;
+            flex-wrap: wrap;
         }
         
         .tab-btn {
@@ -228,17 +184,12 @@
             color: var(--light-color);
         }
         
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        
         .gallery-item {
             position: relative;
             overflow: hidden;
             border-radius: 10px;
             height: 300px;
+            margin-bottom: 20px;
         }
         
         .gallery-item img {
@@ -271,12 +222,6 @@
         .testimonials {
             padding: 80px 0;
             background: var(--gray-color);
-        }
-        
-        .testimonial-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
         }
         
         .testimonial-item {
@@ -322,18 +267,12 @@
             background: var(--light-color);
         }
         
-        .featured-gallery {
-            display: flex;
-            gap: 20px;
-            margin-top: 40px;
-        }
-        
         .featured-item {
-            flex: 1;
             position: relative;
             border-radius: 10px;
             overflow: hidden;
             height: 400px;
+            margin-bottom: 20px;
         }
         
         .featured-item img {
@@ -375,16 +314,11 @@
             color: var(--dark-color);
         }
         
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(2, 200px);
-            gap: 20px;
-        }
-        
         .gallery-grid-item {
             overflow: hidden;
             border-radius: 10px;
+            height: 200px;
+            margin-bottom: 20px;
         }
         
         .gallery-grid-item img {
@@ -403,13 +337,6 @@
             background: var(--dark-color);
             color: var(--light-color);
             padding: 60px 0 20px;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-bottom: 40px;
         }
         
         .footer-col h3 {
@@ -436,11 +363,17 @@
         
         .footer-col ul li {
             margin-bottom: 10px;
+            list-style: none;
+        }
+        
+        .footer-col ul {
+            padding-left: 0;
         }
         
         .footer-col ul li a {
             color: #aaa;
             transition: color 0.3s;
+            text-decoration: none;
         }
         
         .footer-col ul li a:hover {
@@ -462,6 +395,8 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             transition: background 0.3s;
+            color: var(--light-color);
+            text-decoration: none;
         }
         
         .social-links a:hover {
@@ -475,71 +410,38 @@
             font-size: 14px;
             color: #aaa;
         }
-        
-        /* Pink Border Around Entire Site */
-        body {
-            border: 8px solid var(--primary-color);
-            min-height: 100vh;
-        }
-        
-        /* Media Queries */
-        @media (max-width: 992px) {
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .stats-container {
-                flex-direction: column;
-                gap: 30px;
-            }
-            
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-            
-            .featured-gallery {
-                flex-direction: column;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Pink Border Wrapper -->
-    
     <!-- Header -->
-    <header>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-            <nav>
-                <div class="logo">Photography</div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="service.html">Services</a></li>
-                    <li><a href="linkedin.html">LinkedIn</a></li>
+            <a class="navbar-brand" href="#">Photography</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="service.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="linkedin.html">LinkedIn</a>
+                    </li>
                 </ul>
-                <button class="btn">Book Session</button>
-            </nav>
+                <button class="btn btn-custom">Book Session</button>
+            </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -547,7 +449,7 @@
             <div class="hero-content">
                 <h1>Your Precious Moments Captured Forever</h1>
                 <p>Professional photography services for weddings, portraits, events and more. Capturing timeless memories with artistic vision.</p>
-                <button class="btn">View Gallery</button>
+                <button class="btn btn-custom">View Gallery</button>
             </div>
         </div>
     </section>
@@ -555,20 +457,20 @@
     <!-- Stats Section -->
     <section class="stats">
         <div class="container">
-            <div class="stats-container">
-                <div class="stat-item">
+            <div class="row text-center">
+                <div class="col-md-3 col-sm-6 stat-item mb-4">
                     <h2>1,000+</h2>
                     <p>Projects</p>
                 </div>
-                <div class="stat-item">
+                <div class="col-md-3 col-sm-6 stat-item mb-4">
                     <h2>200+</h2>
                     <p>Clients</p>
                 </div>
-                <div class="stat-item">
+                <div class="col-md-3 col-sm-6 stat-item mb-4">
                     <h2>10+</h2>
                     <p>Years</p>
                 </div>
-                <div class="stat-item">
+                <div class="col-md-3 col-sm-6 stat-item mb-4">
                     <h2>40+</h2>
                     <p>Awards</p>
                 </div>
@@ -592,47 +494,59 @@
                 <div class="tab-btn">Events</div>
             </div>
             
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJXGywgzNvtCFRyDjeLkK-HoICP0QRki7usw&s">
-                    <div class="gallery-info">
-                        <h3>Aarti's Wedding</h3>
-                        <p>Traditional Wedding Photography</p>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJXGywgzNvtCFRyDjeLkK-HoICP0QRki7usw&s" alt="Wedding photography">
+                        <div class="gallery-info">
+                            <h3>Aarti's Wedding</h3>
+                            <p>Traditional Wedding Photography</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOhFWA_WIoZJ9GM2xz6Bs6V8LRzNqwZ8bm2Q&s" alt="Fashion photoshoot">
-                    <div class="gallery-info">
-                        <h3>Summer Collection</h3>
-                        <p>Fashion Photography</p>
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOhFWA_WIoZJ9GM2xz6Bs6V8LRzNqwZ8bm2Q&s" alt="Fashion photoshoot">
+                        <div class="gallery-info">
+                            <h3>Summer Collection</h3>
+                            <p>Fashion Photography</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://cdn0.weddingwire.in/article-real-wedding-o/5918/3_2/960/jpg/15_48195.jpeg" alt="Traditional ceremony">
-                    <div class="gallery-info">
-                        <h3>Mehndi Ceremony</h3>
-                        <p>Cultural Photography</p>
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://cdn0.weddingwire.in/article-real-wedding-o/5918/3_2/960/jpg/15_48195.jpeg" alt="Traditional ceremony">
+                        <div class="gallery-info">
+                            <h3>Mehndi Ceremony</h3>
+                            <p>Cultural Photography</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvbw0nyr2bTzaezNxeke-rUe838klyMzitTA&s" alt="Portrait photography">
-                    <div class="gallery-info">
-                        <h3>Family Portrait</h3>
-                        <p>Portrait Photography</p>
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvbw0nyr2bTzaezNxeke-rUe838klyMzitTA&s" alt="Portrait photography">
+                        <div class="gallery-info">
+                            <h3>Family Portrait</h3>
+                            <p>Portrait Photography</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://www.akphotographyarun.com/wp-content/uploads/2023/12/ENGAGEMENT-scaled-1.jpg" alt="Wedding photography">
-                    <div class="gallery-info">
-                        <h3>Rohan & Priya's Wedding</h3>
-                        <p>Wedding Photography</p>
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://www.akphotographyarun.com/wp-content/uploads/2023/12/ENGAGEMENT-scaled-1.jpg" alt="Wedding photography">
+                        <div class="gallery-info">
+                            <h3>Rohan & Priya's Wedding</h3>
+                            <p>Wedding Photography</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://i.natgeofe.com/k/03a26866-3e2a-4be4-8017-fda10c708efe/diwali_candles_4x3.jpg" alt="Event photography">
-                    <div class="gallery-info">
-                        <h3>Diwali Celebration</h3>
-                        <p>Event Photography</p>
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://i.natgeofe.com/k/03a26866-3e2a-4be4-8017-fda10c708efe/diwali_candles_4x3.jpg" alt="Event photography">
+                        <div class="gallery-info">
+                            <h3>Diwali Celebration</h3>
+                            <p>Event Photography</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -647,16 +561,18 @@
                 <p>What our clients say about our photography services</p>
             </div>
             
-            <div class="testimonial-slider">
-                <div class="testimonial-item">
-                    <div class="testimonial-img">
-                        <img src="/api/placeholder/200/200" alt="Client testimonial">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="testimonial-item">
+                        <div class="testimonial-img">
+                            <img src="/api/placeholder/200/200" alt="Client testimonial">
+                        </div>
+                        <div class="testimonial-text">
+                            "Working with this photography team was an absolute pleasure. They captured every special moment of our wedding beautifully. The photos truly reflect the emotions and joy of our special day."
+                        </div>
+                        <div class="testimonial-name">Priya Sharma</div>
+                        <div class="testimonial-role">Bride</div>
                     </div>
-                    <div class="testimonial-text">
-                        "Working with this photography team was an absolute pleasure. They captured every special moment of our wedding beautifully. The photos truly reflect the emotions and joy of our special day."
-                    </div>
-                    <div class="testimonial-name">Priya Sharma</div>
-                    <div class="testimonial-role">Bride</div>
                 </div>
             </div>
         </div>
@@ -670,19 +586,23 @@
                 <p>Explore our highlight selections from recent photography sessions</p>
             </div>
             
-            <div class="featured-gallery">
-                <div class="featured-item">
-                    <img src="https://cdn0.weddingwire.in/article-gallery-o/00000/3_2/960/jpg/articulos-india/2018/non-troncales/south-indian-wedding-traditions/mahima-bhatia1.jpeg" alt="Featured wedding photography">
-                    <div class="featured-overlay">
-                        <h3 class="featured-title">Traditional Weddings</h3>
-                        <button class="btn btn-outline">View Gallery</button>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="featured-item">
+                        <img src="https://cdn0.weddingwire.in/article-gallery-o/00000/3_2/960/jpg/articulos-india/2018/non-troncales/south-indian-wedding-traditions/mahima-bhatia1.jpeg" alt="Featured wedding photography">
+                        <div class="featured-overlay">
+                            <h3 class="featured-title">Traditional Weddings</h3>
+                            <button class="btn btn-outline-custom">View Gallery</button>
+                        </div>
                     </div>
                 </div>
-                <div class="featured-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpTWMdWCC7GdXFGOq9XDB5BVC-Clp7kq4oGA&s" alt="Featured portrait photography">
-                    <div class="featured-overlay">
-                        <h3 class="featured-title">Portrait Sessions</h3>
-                        <button class="btn btn-outline">View Gallery</button>
+                <div class="col-md-6">
+                    <div class="featured-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpTWMdWCC7GdXFGOq9XDB5BVC-Clp7kq4oGA&s" alt="Featured portrait photography">
+                        <div class="featured-overlay">
+                            <h3 class="featured-title">Portrait Sessions</h3>
+                            <button class="btn btn-outline-custom">View Gallery</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -694,33 +614,49 @@
         <div class="container">
             <div class="gallery-header">
                 <h2>Gallery</h2>
-                <button class="btn">View All</button>
+                <button class="btn btn-custom">View All</button>
             </div>
             
-            <div class="gallery-grid">
-                <div class="gallery-grid-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_k6RuC7WPc3jAING27RPDKOSWSOFKeUzTeA&s" >
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_k6RuC7WPc3jAING27RPDKOSWSOFKeUzTeA&s" alt="Gallery image">
+                    </div>
                 </div>
-                <div class="gallery-grid-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0CkanlDwQNsphBgTIV78s2quKYHdTAf4wjA&s" >
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0CkanlDwQNsphBgTIV78s2quKYHdTAf4wjA&s" alt="Gallery image">
+                    </div>
                 </div>
-                <div class="gallery-grid-item">
-                    <img src="https://mymodernmet.com/wp/wp-content/uploads/2024/11/Natures-Best-Photography-1-GrandPrize%C2%A9MangeshDesai-Tigers.jpg" >
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-grid-item">
+                        <img src="https://mymodernmet.com/wp/wp-content/uploads/2024/11/Natures-Best-Photography-1-GrandPrize%C2%A9MangeshDesai-Tigers.jpg" alt="Gallery image">
+                    </div>
                 </div>
-                <div class="gallery-grid-item">
-                    <img src="https://images.squarespace-cdn.com/content/v1/5de93a2db580764b4f6963f9/7f75e748-c241-46ed-a1b7-89545461cb64/BRONZE+%C2%A9+Li+Liu_Swallow+drinking.jpg" >
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-grid-item">
+                        <img src="https://images.squarespace-cdn.com/content/v1/5de93a2db580764b4f6963f9/7f75e748-c241-46ed-a1b7-89545461cb64/BRONZE+%C2%A9+Li+Liu_Swallow+drinking.jpg" alt="Gallery image">
+                    </div>
                 </div>
-                <div class="gallery-grid-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStlH5R4zsYs5kcZOzNnRzoknVKCuQIVSpnIA&s" >
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStlH5R4zsYs5kcZOzNnRzoknVKCuQIVSpnIA&s" alt="Gallery image">
+                    </div>
                 </div>
-                <div class="gallery-grid-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgDpe6Maf9W6OH_vP-2qQohqRSE1wYbYLePg&s" >
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgDpe6Maf9W6OH_vP-2qQohqRSE1wYbYLePg&s" alt="Gallery image">
+                    </div>
                 </div>
-                <div class="gallery-grid-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNK0vhlVOeq3rimMIdy1ZjE0bvOb1IAxCz0A&s" >
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNK0vhlVOeq3rimMIdy1ZjE0bvOb1IAxCz0A&s" alt="Gallery image">
+                    </div>
                 </div>
-                <div class="gallery-grid-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStRsXpgHsfOk4a5NzK3PGEi1SLKdw-CXoYig&s" >
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery-grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStRsXpgHsfOk4a5NzK3PGEi1SLKdw-CXoYig&s" alt="Gallery image">
+                    </div>
                 </div>
             </div>
         </div>
@@ -729,8 +665,8 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-container">
-                <div class="footer-col">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 footer-col mb-4">
                     <h3>Photography</h3>
                     <p>Professional photography services capturing your special moments with artistic vision and technical excellence.</p>
                     <div class="social-links">
@@ -740,17 +676,17 @@
                         <a href="#"><i class="fab fa-pinterest"></i></a>
                     </div>
                 </div>
-                <div class="footer-col">
+                <div class="col-lg-3 col-md-6 footer-col mb-4">
                     <h3>Quick Links</h3>
                     <ul>
-                      <li><a href="#home">Home</a></li>
-                      <li><a href="#portfolio">Portfolio</a></li>
-                      <li><a href="about.html">About</a></li>
-                      <li><a href="service.html">Services</a></li>
-                      <li><a href="linkedin.html">LinkedIn</a></li>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="home.html">Portfolio</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="linkedin.html">LinkedIn</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="col-lg-3 col-md-6 footer-col mb-4">
                     <h3>Services</h3>
                     <ul>
                         <li><a href="#">Wedding Photography</a></li>
@@ -760,7 +696,7 @@
                         <li><a href="#">Cultural Photography</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="col-lg-3 col-md-6 footer-col mb-4">
                     <h3>Contact Us</h3>
                     <p><i class="fas fa-map-marker-alt"></i> 123 Studio Street, Mumbai</p>
                     <p><i class="fas fa-phone"></i> +91 9876543210</p>
@@ -773,6 +709,8 @@
         </div>
     </footer>
 
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
         // Simple tab functionality
         const tabBtns = document.querySelectorAll('.tab-btn');
@@ -792,7 +730,7 @@
         
         // Sticky header
         window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
+            const header = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
             } else {
