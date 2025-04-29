@@ -1,18 +1,36 @@
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
+// script.js
+
+document.getElementById('contactForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const message = document.getElementById('message').value.trim();
 
-    const response = await fetch('https://your-api-id.execute-api.region.amazonaws.com/contact', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name, email, message })
-    });
+    const data = {
+        name: name,
+        email: email,
+        message: message
+    };
 
-    const result = await response.json();
-    alert(result.message || result.error);
+    try {
+        const response = await fetch('https://78uobwxd2g.execute-api.ap-south-1.amazonaws.com/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            alert('Message sent successfully!');
+            document.getElementById('contactForm').reset();
+        } else {
+            alert('Failed to send message.');
+            console.error(await response.text());
+        }
+    } catch (error) {
+        alert('Error: ' + error.message);
+        console.error(error);
+    }
 });
